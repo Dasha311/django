@@ -1,0 +1,21 @@
+h2 a {
+  color: #000;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.dropdown-menu:not(.btn-sm) {
+  animation: 0.40s slideup;
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(10%);
+  }
+}

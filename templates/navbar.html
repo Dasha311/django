@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">QRM Monitoring</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Add QR Code Scanner link -->
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'scan_qr_code' %}">Scan QR</a>
+        </li>
+      </ul>
+
+      {% if user.is_authenticated %}
+      <div class="d-flex flex-row justify-content-end gap-2">
+        <span class="navbar-text"> {{ user.get_username }}</span>
+        
+        <form id="logout-form" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>
