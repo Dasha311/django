@@ -42,7 +42,7 @@
           href="{% url 'edit_subject' subject.id %}"
           class="btn btn-outline-warning"
         >
-          <i class="fa-solid fa-edit"></i> Edit
+          <i class="fa-solid fa-pencil-alt"></i> Edit
         </a>
 
         <a
@@ -50,7 +50,7 @@
           class="btn btn-outline-danger"
           onclick="return confirm('Are you sure you want to delete this subject?')"
         >
-          <i class="fa-solid fa-trash"></i> Delete
+          <i class="fa-solid fa-xmark"></i> Delete
         </a>
         
         <a
@@ -58,7 +58,7 @@
           onclick="showQRCode('{% url 'start_lesson' subject.id %}', '{{ subject.title }}')"
           class="btn btn-outline-secondary"
         >
-          <i class="fa-solid fa-qrcode"></i> Generate QR
+          <i class="fa-solid fa-barcode"></i> QR
         </a>
       </div>
     </div>
