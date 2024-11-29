@@ -6,9 +6,6 @@ from store.models import Dish
 
 from django.views import View
 
-def index(request):
-    return HttpResponse(f"Hello {request.user.username}!")
-
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)

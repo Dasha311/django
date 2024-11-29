@@ -20,7 +20,6 @@ from django.urls import path, include
 from store import views
 
 urlpatterns = [
-    path('', include('store.urls')),
     path("admin/", admin.site.urls),
     path('api/', include('api.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
