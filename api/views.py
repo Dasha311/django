@@ -25,16 +25,19 @@ class DishList(ListAPIView):
     ordering_fields = ['name', 'price']  
     ordering = ['name']  
 
+
 class DishDetailView(RetrieveAPIView):
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
     permission_classes = [IsAuthenticated]
+
 
 class CourierDetailView(RetrieveAPIView):
     queryset = Courier.objects.all()
     serializer_class = CourierSerializer
     permission_classes = [IsAuthenticated]
     
+
 class RestaurantFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains', label="Restaurant Name (partial)")
     open_from = django_filters.NumberFilter(field_name='open_from', lookup_expr='lte', label="Open From (Hour)")
@@ -48,7 +51,8 @@ class RestaurantFilter(django_filters.FilterSet):
         if value is not None:
             return queryset.filter(Q(open_from__lte=value) & Q(open_until__gt=value))
         return queryset
-        
+       
+ 
 class AllRestaurantsView(ListAPIView):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
@@ -58,6 +62,7 @@ class AllRestaurantsView(ListAPIView):
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend, OrderingFilter)
     ordering_fields = ['name', 'open_from']  
     ordering = ['name']  
+
 
 class CurrentlyOpenRestaurantsView(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -91,7 +96,6 @@ class MenuDetailView(RetrieveUpdateDestroyAPIView):
         paginated_dishes = paginator.paginate_queryset(dishes, request)
         dish_serializer = DishSerializer(paginated_dishes, many=True)
         return paginator.get_paginated_response(dish_serializer.data)
-
 
 
 class OrderDetailView(RetrieveAPIView):
